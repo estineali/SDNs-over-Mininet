@@ -1,0 +1,196 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{minted}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Emulating Virtual-LANS on an SDN infrastructure using Mininet}
+
+
+\author{\IEEEauthorblockN{Farooq Abdul Rehman}
+\IEEEauthorblockA{\textit{Habib University}\\
+Karachi, Pakistan \\
+fr04020@st.habib.edu.pk}
+\and
+\IEEEauthorblockN{Muhammad Shahrom Ali}
+\IEEEauthorblockA{\textit{Habib University }\\
+Karachi, Pakistan \\
+ma03559@st.habib.edu.pk}
+\and
+\IEEEauthorblockN{Muhammad Shahzain}
+\IEEEauthorblockA{\textit{Habib University}\\
+Karachi, Pakistan \\
+ms03977@st.habib.edu.pk}
+}
+
+\maketitle
+
+\begin{abstract}
+    Software Defined Networking introduces the principle of Virtualization to Networks where intelligence is pulled from the hardware (Switches, Routers, etc.) and centralized to a control unit. The benefit of this is that upgrading control procedures will require updates only in the centralized control unit. The downside of this is, its a drastic shift from all that we have. As a result, physical implementation of SDN, quite like adoption of IPv6, is slow and costly. As a result, even studying and exploring this subject in depth is difficult. Drawing similarities between present solutions and how exactly current network infrastructures will evolve into SDNs helps understand the concept. Due to a lack of actual hardware devices, simulations and emulations of SDNs further understanding and exploration in the subject. 
+    This paper is our report for the GUI-based VLAN-on-SDN simulator that we are building. This simulator will also serve as a learning tool, a visual aid to understanding SDNs. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+Software Defined Networking, Mininet, Virtual LANs, VLAN, SDN
+\end{IEEEkeywords}
+
+\section{\textbf{Introduction}}
+    Traditional Internet infrastructure relies on switches \& routers and the intelligence these devices offer for the transmission of data. Each device implements layer 2 (Data-Link Layer) and layer 3 (Network Layer) protocols to define the packet format and control packets' flow; the system is decentralized, intelligence is distrubuted. 
+    As a result it limits the ability to adapt to new protocols, as well as to capabilities and resources of each individual intermediate device. Routers opt for a greedy approach and are restricted to a local maxima. 
+    
+    \noindent
+    Software-Defined Networks (SDNs) is an innovative approach to solve this problems by having a decoupled software (or control plane) which controls these switches and routers. However, this new model requires new devices with SDN capabilities, which are not widely available yet. Thanks to mininet, we can simulate SDNs on our computers without relying on any external networking devices. Using mininet, we can create a VLAN simulator which simulates real-world virtual networks on SDNs.
+
+\section{\textbf{Software-Defined Networking}}
+    Software-Defined Networks bring the principle of virtualization to Networks i.e. creating a software based representation of the network. We know that traditional routing uses integrated hardware and software to direct traffic across a length of routers and switches. Originally, the control and data plane were together in traditional routing, but in SDNs, the network is virtualized by separating the control plane that manages the network, from the data traffic plane. 
+    A smart controller is being run which is integrated with specialized software that manages all network traffic, and is connected to the series of routers and switches. SDNs have evolved from being used in a specific case scenario to multiple scenarios, both within the data centre, to the cloud, and towards the new world of IoT. Comparing with the traditional IP system, where the infrastructure relies on Application layer, Data Plane and Control Plane, the infrastructure in SDNs relies solely on the data plane as the control and data planes are completely decoupled, leaving the data plane in the network infrastructure only. By this process, networking devices are only allowed to play a very simple and pure role: the packet forwarding.\cite{b2}
+    
+    \subsection{Components}
+        \subsubsection{SDN Controller}
+        
+        \subsubsection{OpenFlow Switches}
+        
+        \subsubsection{Hosts}
+        
+    
+    \subsection{Planes and Layers}
+        \subsubsection{Control Plane}
+            As routers need routing table before forwarding packets and also needs the route that matches the respective packet's destination address.The term control plane refers to any action that controls the data plane. Most of these actions have to do with creating the tables used by the data plane, tables like the IP routing table, an IP Address Resolution Protocol (ARP) table, a switch MAC address table, and so on. By adding to, removing, and changing entries to the tables used by the data plane, the control plane processes control what the data plane does. \cite{b1}
+
+        \subsubsection{Data Plane}
+
+        \subsubsection{Management Plane}
+
+        \subsubsection{Bijection Between Planes and Layers}
+
+        \subsubsection{Application Layer}
+            The application layer depends on the information of all network components connected to the system. These applications makes decisions based on changes in the network. When the network topology, features, or policy is modified, application also changes the behaviour in a dynamic way. The northbound APIs provide contact between the controller and its applications. The communication between the controller and the network data planes are done via the Southbound API. \cite{b2}
+            
+    \subsection{Interfaces}
+
+        \subsubsection{Southbound Interface}
+            Schematically, Southbound is on the south side of the control plane.
+            The southbound interface layer is a bridge layer apart from the functionality layers that defines the protocol associated with a series of programming interfaces for the communication between the data and the control planes. For instance, it describes the manner by which the data plane could be configured by the control plane, and the format of mandatory and optional arguments used in installing high level policies into the data plane, the right way and time of data plane’s requesting higher level help.
+        
+        \subsubsection{Northbound Interface}  
+            Schematically, Northbound is on the north side of the control plane. A northbound interface allows the Application layer to communicate with the networking devices through the control plane.\cite{b2}
+            In short, as South signifies downwards, a south bound interface allows a network component to communicate to a lower-level component. \cite{b2}
+
+
+\section{\textbf{Mininet}}
+% What it is 
+% How is this used in our Emulator
+% Other options
+
+Mininet is a network emulation system as it runs a collection of end-user-hosts, switches and routers on single Linux kernel. In short, all of the routers, hosts, links and controller on the mininet emulator are created using software rather than the hardware.
+\cite{b3}
+% \subsection{Host}
+% The code: addHost() adds a host to a topology and returns the host name.
+% \cite{b3}
+
+The heart of mininet is hosts which provide abstraction in form of virtual routers and switches. Each host is a linux process which uses computing resources virtualized through the operating system, in this case, the linux kernel. A mininet host utilizes network interfaces, routing tables and ARP tables provided by the linux virtualization feature. Our simulator will create the virtual networks using these hosts through mininet's Python API.
+
+% \subsection{Software-based switches}
+% \cite{b3}
+
+% \subsection{Virtual ethernet links}
+% \cite{b3}
+% The code method:
+% addLink() adds a bidirectional link 
+% to a topology (and returns a link key, but this is not important). \cite{b3}
+
+% \subsection{Python API}
+
+% \cite{b3}
+
+\section{\textbf{The Emulator}}
+    \subsection{Introduction and Scope}
+        On top of the features provided by mininet, this simulator presents a Graphical interface to view a simulation of an SDN infrastructure. 
+        It allows the capability to add end devices to the network and change protocols in the programmable intermediate devices, and displays packet flow throughout the network. 
+        Using this, one can see how VLANs can be more powerful on SDNs, where we can implement different protocols for each virtual network, change the VLAN configuration on-the-fly, and add additional security features with little to no added costs.    
+
+% summarizing what "we did" by summarizing someone else's work
+
+    \subsection{Scenarios Tested}
+        \subsubsection{Coffee Shop}
+        \subsubsection{Office Building}
+
+    \subsection{Implementing The Network Topology}
+
+        We use mininet's barebone Host class to implement a network topology for VLAN. Mininet's host class provides methods such as addSwitch, addHost, and addLink to create network topologies. The following example depicts how we can create a very simple topology for the VLAN network. This can be extended to include predefined number of hosts, switches and links:\\
+
+        \begin{minted}
+[frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos]
+{python}
+from mininet.node import Host
+import vlan
+
+class VLANStarTopo():
+    def build(self):
+        self.s1 = Host.addSwitch('s1')
+        self.h = Host.addHost("VLANHost", vlan=vlan
+        Host.addLink(h, s1)
+        
+        \end{minted}
+
+
+
+
+% \includegraphics[scale=0.7]{vlantopo.PNG}
+
+% already available :p improvise :p
+% https://github.com/mininet/mininet/blob/master/examples/vlanhost.py
+
+% \subsection{Implementing The Network Topology}
+% $http://mininet.org/walkthrough/\#custom-topologies$
+
+% $https://mailman.stanford.edu/pipermail/mininet-discuss/2013-September/002881.html$
+
+
+
+% \subsection{Implementing The Command-line Interface}
+
+\subsection{\textbf{Simulation Results}}
+
+Results will be shown at the end.
+
+As a result of the simulation, the user will be able to improve their understanding of SDNs as well as experiment with a simulation of SDNs. This will further enhance their level of understanding; and to add on to this, the tool will be MIT Licensed and the source code fully accessible at GitHub. Users are free to pull and modify it, and build on top of it to further suit their own needs. 
+
+
+\section{\textbf{Conclusion}}
+
+
+
+% below citation is for "reference" (pun intended). remove it and add the correct ones
+\begin{thebibliography}{00}
+\bibitem{b1} Odom, W., 2020. SDN And Controller-Based Networks Introduction To Controller-Based Networking  Cisco Press. [online] Ciscopress.com. Available at: <https://www.ciscopress.com/articles/article.asp?p=2995354\&seqNum=2>
+
+\bibitem{b2}
+G. Pujolle (2015). Software Networks: Virtualization, SDN, 5G and Security - Wiley  pp. 13-32 
+\bibitem{b3}
+GitHub. 2020. Mininet/Mininet. [online] Available at: <https://github.com/mininet/mininet/wiki/Introduction-to-Mininet\#what>
+
+\bibitem{mininet_SDN_sim}
+De Oliveira, R. L. S., Schweitzer, C. M., Shinoda, A. A., \& Ligia Rodrigues Prete. (2014). 
+\textit{Using Mininet for emulation and prototyping Software-Defined Networks}. 
+2014 IEEE Colombian Conference on Communications and Computing (COLCOM). 
+
+\bibitem{daylightve}
+A. Contini, "Software Defined Networking Fundamentals Part 1: Intro to Networking Planes - OpenDaylight", OpenDaylight, 2016. [Online]. Available: https://www.opendaylight.org/blog/2016/11/16/software-defined-networking-fundamentals-part-1-intro-to-networking-planes. [Accessed: 02- Dec- 2020].
+
+\end{thebibliography}
+
+\end{document}
